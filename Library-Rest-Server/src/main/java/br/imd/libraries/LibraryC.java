@@ -3,9 +3,10 @@ package br.imd.libraries;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import br.ufrn.imd.library.model.Article;
-import br.ufrn.imd.library.model.Book;
-import br.ufrn.imd.library.model.LibObj;
+import br.imd.model.Article;
+import br.imd.model.Book;
+import br.imd.model.LibObj;
+
 
 //@SuppressWarnings("serial")
 public class LibraryC implements LibraryInterface {

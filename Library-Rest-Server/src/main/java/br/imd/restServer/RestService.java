@@ -13,35 +13,36 @@ import br.imd.libraries.LibraryA;
 import br.imd.libraries.LibraryB;
 import br.imd.libraries.LibraryC;
 import br.imd.libraries.LibraryInterface;
-
-
+import br.imd.model.Search;
 
 @Path("library")
 public class RestService {
 	
-	private ArrayList<LibraryInterface> libraries = new ArrayList<LibraryInterface>();
-	
-	public RestService() {
-		LibraryA lA = new LibraryA();
-		LibraryB lB = new LibraryB();
-		LibraryC lC = new LibraryC();
-		libraries.add(lA);
-		libraries.add(lB);
-		libraries.add(lC);
-	}
-	
+	public RestService() {}
 	
 	@GET
 	@Path("search/{tittle}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response search(@PathParam("tittle") String tittle){
 		
+		ArrayList<LibraryInterface> libraries = new ArrayList<LibraryInterface>();
+		LibraryA lA = new LibraryA();
+		LibraryB lB = new LibraryB();
+		LibraryC lC = new LibraryC();
+		
+		libraries.add(lA);
+		libraries.add(lB);
+		libraries.add(lC);
+		
 		String s = "";
 		for(LibraryInterface l : libraries) {
-			s += l.searchForTitle(tittle);
-			s +="\n";
-		}		
-		return Response.ok(s).build();
+			s += l.searchForTitle(tittle.replace("-", " "));
+			s +=" On ";
+		}	
+		
+		Search search = new Search(s);
+		
+		return Response.ok(search).build();
 	}
 	
 }

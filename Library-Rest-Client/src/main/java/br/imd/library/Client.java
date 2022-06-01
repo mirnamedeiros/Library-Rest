@@ -7,21 +7,19 @@ import br.imd.library.exceptions.RestRequestException;
 
 public class Client {
 
-	public Client() {
+	public Client() {}
+	
+	public void search(String tittle) throws RestRequestException {
 		
-	}
-
-	public void search() throws RestRequestException {
-		
-		String tittle = "A";
-		String uri = "http://localhost:8080/RestServer/restapi/library/search/"+"&tittle="+tittle;
+		String uri = "http://localhost:8080/Library-Rest-Server/restapi/library/search/"+tittle;
 		Map<String, String> headerParams = new HashMap<String, String>();
 
 		headerParams.put("accept", "application/json");
-
+		
+		
 		String response = HttpUtils.httpGetRequest(uri, headerParams);
-
-		System.out.println(response);
+		
+		System.out.println("\n"+response);
 	}
 	
 	
@@ -29,7 +27,8 @@ public class Client {
 		
 		Client restClient = new Client();
 		
-		restClient.search();
+		restClient.search("A-Dance-with-Dragons");
+		restClient.search("A-Clash-of-Kings");
 
 	}
 }
