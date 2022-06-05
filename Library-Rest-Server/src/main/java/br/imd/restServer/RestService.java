@@ -37,7 +37,7 @@ public class RestService {
 		String s = "";
 		for(LibraryInterface l : libraries) {
 			s += l.searchForTitle(tittle.replace("-", " "));
-			s +=" On ";
+			s +="\n";
 		}	
 		
 		Search search = new Search(s);
